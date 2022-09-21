@@ -45,7 +45,7 @@ dbExecute(connection, "set search_path to serdp")
 # Query string - edit this to suit your needs
 # Important thing here is that we're getting Postgres to base64 encode
 #   the image data (converting it from binary to text)
-thisQ = "SELECT encode(category_image, 'base64') AS image from category;"
+thisQ = "SELECT encode(category_image, 'base64') AS image from test_img;"
 
 # Execute the SELECT query and fetch the results
 resultSet = dbSendQuery(connection, thisQ)
@@ -59,7 +59,7 @@ imageData <- resultData$image
 imageDataDecoded <- jsonlite::base64_dec(imageData)
 
 # Create a file connection and write the binary data to disk using mode "wb".
-write.filename = file(here("pic.png"), "wb")
+write.filename = file(here("thermal.jpg"), "wb")
 writeBin(imageDataDecoded, write.filename)
 close(write.filename)
 ```
