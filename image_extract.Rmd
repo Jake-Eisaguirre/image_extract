@@ -25,7 +25,7 @@ tryCatch({
     drv <- dbDriver("Postgres")
     print("Connecting to Database…")
     connection <- dbConnect(drv, 
-                 dbname = Sys.getenv("dbname"),
+                 dbname = "RIBBiTR_Legacy",
                  host = Sys.getenv("host"), 
                  port = Sys.getenv("port"),
                  user = Sys.getenv("user"), 
@@ -59,7 +59,7 @@ imageData <- resultData$image
 imageDataDecoded <- jsonlite::base64_dec(imageData)
 
 # Create a file connection and write the binary data to disk using mode "wb".
-write.filename = file(here("thermal.jpg"), "wb")
+write.filename = file(here("test.fastq"), "wb")
 writeBin(imageDataDecoded, write.filename)
 close(write.filename)
 ```
